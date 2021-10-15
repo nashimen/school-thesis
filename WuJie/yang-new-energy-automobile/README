@@ -1,0 +1,37 @@
+新能源汽车的感知质量识别
+
+1-data-processing.py
+将爬取的数据合并
+计算不同属性的感知质量分数
+汇总不同维度的属性重要度
+
+2-attribute-importance-calculating.py
+属性重要度计算，TFIDF，最满意评论&最不满意评论为语料库
+
+3-hot-words-calculating.py
+热词计算，TFIDF，感知质量评论为语料库
+两种方式：①分属性下的热词；②不分属性下的热词
+
+4-attribute-importance-calculating-v2.py
+属性重要度计算v2，TFIDF，各属性的在线评论为语料库
+所有年份×所有属性（5×8）构成文档集合
+
+5-drawing3D.py
+画三维折线图
+
+5-attribute-importance-calculating-v3.py
+属性重要度计算v3，TFIDF
+是否国产×年份×属性 构成文档集合
+需要进行属性匹配
+
+6-hot-words-calculating-v2.py
+热词计算，TFIDF，感知质量评论为语料库
+两种方式：①分属性下的热词；②不分属性下的热词
+
+7-attribute-importance-calculating-v4.py
+最满意&最不满意评论重要度计算，TFIDF
+针对是否国产
+
+8-attribute-importance-calculating-v4.py
+热词计算，TFIDF
+分属性下的 是否国产 计算热词
