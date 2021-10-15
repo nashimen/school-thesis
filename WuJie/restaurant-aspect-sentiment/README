@@ -1,0 +1,10 @@
+1-SA-allAttr-dl.py bert+深度学习提取特征+机器学习分类
+1-SA-allAttr-dl-ml.py bert+深度学习提取特征+机器学习分类，bert+深度学习分类
+2-SA-allAttr-dl-bert.py bert+深度学习分类，模型对比部分使用交叉验证，无标签数据预测部分不适用cv
+3-SA-allAttr-dl-w2v.py w2v+深度学习分类，模型对比部分使用交叉验证
+
+4-data-processing.py
+数据处理相关
+
+5-sentiment-analysis.py
+应用前面的模型（Bert）完成评论细粒度情感分类
