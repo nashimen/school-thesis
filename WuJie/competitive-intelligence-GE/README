@@ -1,0 +1,9 @@
+使用GE实现竞争情报分析
+
+1-competitor-identification.py
+竞争对手识别
+爬取Ctrip高中低三种类别的连锁酒店名称→在北京5星级酒店的评论语料库中检索是否出现以上连锁酒店名称
+
+2-attribute-sentiment-classification.py
+属性情感识别
+参考complaint-dynamics-analysis中的方法
