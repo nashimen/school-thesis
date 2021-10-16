@@ -14,8 +14,8 @@ venv/
 __pycache__/
 
 # Data files
-.xlsx
-.csv
-*/data/
-*/result/
-*/test/
+*.xlsx
+*.csv
+*/data
+*/result
+*/test
