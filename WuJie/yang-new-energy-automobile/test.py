@@ -39,10 +39,35 @@ def dictTest():
     print(b)
 
 
+def getCurrentTime():
+    current_time = time.strftime("%Y%m%d%H%M", time.localtime(time.time()))
+    print(current_time)
+
+
 if __name__ == "__main__":
     print("start...")
 
-    dictTest()
+    import matplotlib.pyplot as plt
+    import mpl_toolkits.axisartist as axisartist
+
+    #建立画布
+    fig = plt.figure()
+    #使用axisartist.Subplot方法建立一个绘图区对象ax
+    # ax = fig.add_subplot(111)
+    ax = axisartist.Subplot(fig, 111)
+    #将绘图区对象添加到画布中
+    fig.add_axes(ax)
+    #经过set_axisline_style方法设置绘图区的底部及左侧坐标轴样式
+    #"-|>"表明实心箭头："->"表明空心箭头
+    ax.axis["bottom"].set_axisline_style("-|>", size = 1.5)
+    ax.axis["left"].set_axisline_style("->", size = 1.5)
+    #经过set_visible方法设置绘图区的顶部及右侧坐标轴隐藏
+    ax.axis["top"].set_visible(False)
+    ax.axis["right"].set_visible(False)
+    x=[1,4]
+    y=[1,8]
+    plt.plot(x,y)
+    plt.show()
 
     print("end...")
 

@@ -35,3 +35,18 @@
 8-attribute-importance-calculating-v4.py
 热词计算，TFIDF
 分属性下的 是否国产 计算热词
+
+9-attribute-importance-calculating-v5.py
+最满意&最不满意评论重要度计算，TFIDF
+价格&购车目的
+
+10-attribute-importance-calculating-v6.py
+热词计算，TFIDF，分属性评论为语料库
+价格&购车目的
+
+11-case-study.py
+以“秦新能源”车系进行分析
+观点抽取
+
+12-get-top10-words.py
+获取每个属性下的Top10热词

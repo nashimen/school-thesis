@@ -5,6 +5,7 @@ import numpy
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.font_manager as font_manager
 
 import warnings
 warnings.filterwarnings("ignore", category=Warning)
@@ -218,7 +219,7 @@ def scatter3D():
 # 先画散点图再画折线图
 def drawing_scatter_broken_line(path, name):
     colors = {"Appearance": "b", "Comfort": "g", "CP": "r", "EC": "c", "Handling": "m", "Interiors": "y", "Power": "k", "Space": "gray"}
-    markers = {1: "o", 2: "^", 3: "4"}
+    markers = {1: "o", 2: "*", 3: "s"}
     data = pd.read_excel(path, sheet_name=name)
     aspects = colors.keys()
     x = [2017, 2018, 2019, 2020, 2021]
@@ -230,6 +231,8 @@ def drawing_scatter_broken_line(path, name):
         z = current_data["Importance"]
         ax.plot(x, y, z, linewidth=1, color=colors.get(aspect), linestyle='-', label=aspect)  # 设置图例
 
+    plt.legend(loc="upper right")
+
     # markers = ["o", "x", "^", "s", "d"]
 
     # 画散点图
@@ -240,11 +243,6 @@ def drawing_scatter_broken_line(path, name):
         y = current_data["Performance"].tolist()
         z = current_data["Importance"].tolist()
         shape = current_data["Shape"].tolist()
-        # print("x:", x)
-        # print("y:", y)
-        # print("z:", z)
-        # ax.plot(x, y, z, linewidth=0.5, marker="o", markerfacecolor='g', markersize=4, label=aspect)  # 设置图例
-        # ax.plot(x, y, z, linewidth=0.5, marker="o", markeredgecolor='gray', markerfacecolor='gray', markersize=4, label=aspect)  # 设置图例
         for i in range(length):
             # current_shape = shape[i]
             current_x = x[i]
@@ -258,9 +256,9 @@ def drawing_scatter_broken_line(path, name):
     ax.dist = 9.5
 
     # 设置标签
-    ax.set_xlabel("Year")
-    ax.set_ylabel("Performance")
-    ax.set_zlabel("Importance")
+    ax.set_xlabel("Year", fontsize=16)
+    ax.set_ylabel("Performance", fontsize=16)
+    ax.set_zlabel("Importance", fontsize=16)
 
     ax.set_xticklabels(["Before 2018", "2018", "2019", "2020", "2021"])
     ax.set_xticks([2017, 2018, 2019, 2020, 2021])
@@ -271,11 +269,81 @@ def drawing_scatter_broken_line(path, name):
 # 二维图
 def drawing_2d(path, name):
     colors = {"Appearance": "b", "Comfort": "g", "CP": "r", "EC": "c", "Handling": "m", "Interiors": "y", "Power": "k", "Space": "gray"}
-    markers = {1: "o", 2: "^", 3: "s"}
+    markers = {1: "o", 2: "*", 3: "s"}
     data = pd.read_excel(path, sheet_name=name)
     aspects = colors.keys()
     ax = plt.figure().add_subplot()
 
+    # 画折线图
+    for aspect in aspects:
+        current_data = data.loc[data["Aspect"] == aspect]
+        x = current_data["Performance"].tolist()
+        y = current_data["Importance"].tolist()
+        ax.plot(x, y, color=colors.get(aspect), linewidth=1.0)
+
+    # 画箭头
+    for aspect in aspects:
+        current_data = data.loc[data["Aspect"] == aspect]
+        x = current_data["Performance"].tolist()
+        y = current_data["Importance"].tolist()
+        length = len(x)
+        for i in range(length):
+            if i == 0:
+                continue
+            start_x = (x[i] + x[i - 1])/2.0
+            start_y = (y[i] + y[i - 1])/2.0
+            plt.annotate("", xy=(x[i - 1], y[i - 1]), xytext=(start_x, start_y), arrowprops=dict(arrowstyle="<-", color=colors.get(aspect)))
+
+    # 画散点图
+    for aspect in aspects:
+        current_data = data.loc[data["Aspect"] == aspect]
+        x = current_data["Performance"].tolist()
+        y = current_data["Importance"].tolist()
+        shape = current_data["Shape"].tolist()
+        length = len(x)
+        for i in range(length):
+            current_x = x[i]
+            current_y = y[i]
+            current_shape = markers.get(shape[i])
+            ax.scatter(current_x, current_y, color=colors.get(aspect), s=17, marker=current_shape)
+
+    ax.set_xlabel("Performance", fontsize=16)
+    ax.set_ylabel("Importance", fontsize=16)
+
+    # 画中位线
+    min_x = min(data["Performance"].tolist()) - 0.01
+    max_x = max(data["Performance"].tolist()) + 0.01
+    median_x = median(data["Performance"].tolist())
+    min_y = min(data["Importance"].tolist()) - 0.1
+    # max_y = (max_x - min_x + min_y)
+    max_y = max(data["Importance"].tolist()) + 0.1
+    median_y = median(data["Importance"].tolist())
+    ax.plot([median_x, median_x], [min_y, max_y], color="black", linewidth=1.0)
+    ax.plot([min_x, max_x], [median_y, median_y], color="black", linewidth=1.0)
+
+    # 去掉边缘空白
+    plt.margins(0, 0)
+    plt.xlim(xmin=min_x, xmax=max_x)
+    plt.ylim(ymin=min_y, ymax=max_y)
+
+    plt.show()
+
+
+# 计算中位数
+def median(data):
+    data.sort()
+    half = len(data) // 2
+    return (data[half] + data[~half]) / 2
+
+
+# 二维三维图一起画
+def drawing_together(path, name):
+    colors = {"Appearance": "b", "Comfort": "g", "CP": "r", "EC": "c", "Handling": "m", "Interiors": "y", "Power": "k", "Space": "gray"}
+    markers = {1: "o", 2: "^", 3: "s"}
+    data = pd.read_excel(path, sheet_name=name)
+    aspects = colors.keys()
+    figure = plt.figure(1)
+    ax = figure.add_subplot(121)
     # 画折线图
     for aspect in aspects:
         current_data = data.loc[data["Aspect"] == aspect]
@@ -327,39 +395,385 @@ def drawing_2d(path, name):
     plt.xlim(xmin=min_x, xmax=max_x)
     plt.ylim(ymin=min_y, ymax=max_y)
 
+    # 三维图
+    ax2 = figure.add_subplot(122, projection='3d')
+    for aspect in aspects:
+        current_data = data.loc[data["Aspect"] == aspect]
+        y = current_data["Performance"]
+        z = current_data["Importance"]
+        ax2.plot(x, y, z, linewidth=1, color=colors.get(aspect), linestyle='-', label=aspect)  # 设置图例
+
+    # 画散点图
+    for aspect in aspects:
+        current_data = data.loc[data["Aspect"] == aspect]
+        length = len(x)
+        y = current_data["Performance"].tolist()
+        z = current_data["Importance"].tolist()
+        shape = current_data["Shape"].tolist()
+        for i in range(length):
+            # current_shape = shape[i]
+            current_x = x[i]
+            current_y = y[i]
+            current_z = z[i]
+            current_shape = markers.get(shape[i])
+            ax2.plot(current_x, current_y, current_z, linewidth=0.5, marker=current_shape, markeredgecolor=colors.get(aspect), markerfacecolor=colors.get(aspect), markersize=4, label=aspect)  # 设置图例
+
+    ax2.dist = 9.5
+
+    # 设置标签
+    ax2.set_xlabel("Year")
+    ax2.set_ylabel("Performance")
+    ax2.set_zlabel("Importance")
+
+    ax2.set_xticklabels(["Before 2018", "2018", "2019", "2020", "2021"])
+    ax2.set_xticks([2017, 2018, 2019, 2020, 2021])
+
     plt.show()
 
 
-# 计算中位数
-def median(data):
-    data.sort()
-    half = len(data) // 2
-    return (data[half] + data[~half]) / 2
+def drawing_together_v2(path, name):
+    t=np.arange(0.0,2.0,0.1)
+    s=np.sin(t*np.pi)
+
+    plt.figure(figsize=(8,8), dpi=80)
+    plt.figure(1)
+    ax1 = plt.subplot(121)
+    ax1.plot(t,s, color="r",linestyle = "--")
+    ax2 = plt.subplot(122)
+    ax2.plot(t,s,color="y",linestyle = "-")
+    # ax3 = plt.subplot(223)
+    # ax3.plot(t,s,color="g",linestyle = "-.")
+    # ax4 = plt.subplot(224)
+    # ax4.plot(t,s,color="b",linestyle = ":")
 
 
-# 二维三维图一起画
-def drawing_together(path, name):
-    colors = {"Appearance": "b", "Comfort": "g", "CP": "r", "EC": "c", "Handling": "m", "Interiors": "y", "Power": "k", "Space": "gray"}
-    markers = {1: "o", 2: "^", 3: "s"}
+# v2-价格&购车目的作图，二维&三维同时画
+def drawing_2D_3D(path, name):
+    font = {'family': 'Times New Roman', 'size': 12}
+    font2 = {'family': 'Times New Roman', 'size': 18}
+    font3 = font_manager.FontProperties(family='Times New Roman', style='normal', size=15)
+    colors = {"Appearance": "b", "Comfort": "g", "CP": "r", "EC": "c", "Handling": "m", "Interiors": "y", "Power": "k", "Space": "yellowgreen"}
+    markers = {1: "o", 2: "*", 3: "s"}
     data = pd.read_excel(path, sheet_name=name)
     aspects = colors.keys()
-    ax = plt.figure().add_subplot()
+    figure = plt.figure(1)
 
-    # 画折线图
+    x = [2017, 2018, 2019, 2020]
+    if name == "Purpose":
+        types = ["工作", "生活", "综合"]
+    else:
+        # types = ["Less than 200,000RMB", "200,000 to 500,000RMB", "More than 500,000RMB"]
+        types = [0, 1, 2]
+    i = 1
+    # 先画3D图
+    for current_type in types:
+        quadrant = "23" + str(i)
+        ax = figure.add_subplot(quadrant, projection='3d')
+        current_data_purpose = data.loc[data[name] == current_type]
+        for aspect in aspects:
+            current_data_aspect = current_data_purpose.loc[current_data_purpose["Aspect"] == aspect]
+            y = current_data_aspect["Performance"].tolist()
+            z = current_data_aspect["Importance"].tolist()
+            # print("y:", y)
+            # print("z:", z)
+            # 3D折线图
+            ax.plot(x, y, z, linewidth=1, color=colors.get(aspect), linestyle='-', label=aspect)  # 设置图例
+            # 3D散点图
+            shape = current_data_aspect["Shape"].tolist()
+            length = len(y)
+            for j in range(length):
+                current_x = x[j]
+                current_y = y[j]
+                current_z = z[j]
+                current_shape = markers.get(shape[j])
+                # ax.scatter(x, y, z, linewidth=1, color=colors.get(aspect), linestyle="-", label=aspect)  # 设置图例
+                ax.plot(current_x, current_y, current_z, linewidth=0.5, marker=current_shape, markeredgecolor=colors.get(aspect), markerfacecolor=colors.get(aspect), markersize=6, label=aspect)  # 设置图例
+
+        ax.set_xlabel("Year", fontdict=font2)
+        ax.set_ylabel("Performance", fontdict=font2)
+        ax.set_zlabel("Importance", fontdict=font2)
+        if name == "Purpose":
+            title = "(a)-Work needs" if i == 1 else ("(b)-Living needs" if i == 2 else "(c)-General needs")
+        else:
+            title = "(a)-Less than 200,000RMB" if i == 1 else ("(b)-200,000~500,000RMB" if i == 2 else "(c)-More than 500,000RMB")
+        print(i, title)
+        ax.set_title(title, fontdict=font2)  # 设置标题
+
+        ax.set_xticklabels(["Before 2018", "2018", "2019", "After 2019"], fontdict=font)
+        ax.set_xticks([2017, 2018, 2019, 2020])
+        ax.dist = 8.65
+        i += 1
+
+    # 再画2D图
+    for current_type in types:
+        quadrant = "23" + str(i)
+        ax = figure.add_subplot(quadrant)
+        current_data_purpose = data.loc[data[name] == current_type]
+        legends = []
+        for aspect in aspects:
+            current_data_aspect = current_data_purpose.loc[current_data_purpose["Aspect"] == aspect]
+            x = current_data_aspect["Performance"].tolist()
+            y = current_data_aspect["Importance"].tolist()
+            # 折线
+            legends.append(ax.plot(x, y, color=colors.get(aspect), linewidth=1.0))
+            # 箭头
+            length = len(x)
+            for j in range(length):
+                if j == 0:
+                    continue
+                start_x = (x[j] + x[j - 1])/2.0
+                start_y = (y[j] + y[j - 1])/2.0
+                plt.annotate("", xy=(x[j - 1], y[j - 1]), xytext=(start_x, start_y), weight="extra bold", arrowprops=dict(arrowstyle="<-", color=colors.get(aspect), mutation_scale=20))
+                # plt.annotate("", xy=(x[j - 1], y[j - 1]), xytext=(start_x, start_y), weight="extra bold", arrowprops=dict(arrowstyle="<-", color=colors.get(aspect)))
+            # 散点
+            shape = current_data_aspect["Shape"].tolist()
+            length = len(x)
+            for j in range(length):
+                current_x = x[j]
+                current_y = y[j]
+                current_shape = markers.get(shape[j])
+                ax.scatter(current_x, current_y, color=colors.get(aspect), s=45, marker=current_shape)
+        ax.set_xlabel("Performance", fontdict=font2)
+        ax.set_ylabel("Importance", fontdict=font2)
+        if name == "Purpose":
+            title = "(d)-Work needs" if i == 4 else ("(e)-Living needs" if i == 5 else "(f)-General needs")
+        else:
+            title = "(d)-Less than 200,000RMB" if i == 4 else ("(e)-200,000~500,000RMB" if i == 5 else "(f)-More than 500,000RMB")
+        print(i, title)
+        ax.set_title(title, fontdict=font2)  # 设置标题
+        # ax.set_title(title, fontdict={'family': 'Times New Roman', 'weight': 'bold', 'size': 12, 'style': 'italic'})  # 设置标题
+        # ax.legend(legends, aspects, loc="upper left")  # 设置图例
+
+        # 画中位线
+        min_x = min(current_data_purpose["Performance"].tolist()) - 0.02
+        max_x = max(current_data_purpose["Performance"].tolist()) + 0.02
+        median_x = median(current_data_purpose["Performance"].tolist())
+        min_y = min(current_data_purpose["Importance"].tolist()) - 0.2
+        max_y = max(current_data_purpose["Importance"].tolist()) + 0.2
+        median_y = median(current_data_purpose["Importance"].tolist())
+        ax.plot([median_x, median_x], [min_y, max_y], color="black", linewidth=1.0)
+        ax.plot([min_x, max_x], [median_y, median_y], color="black", linewidth=1.0)
+
+        # 设置坐标轴范围
+        ax.set_xlim(min_x, max_x)
+        ax.set_ylim(min_y, max_y)
+
+        # 去掉边缘空白
+        # plt.margins(0, 0)
+        # plt.xlim(xmin=min_x, xmax=max_x)
+        # plt.ylim(ymin=min_y, ymax=max_y)
+        i += 1
+    leg = plt.legend(aspects, loc="lower center", prop=font3, bbox_to_anchor=(1.21, 1), borderaxespad=0., markerscale=5)  # 设置图例
+    leg.get_frame().set_linewidth(0.0)  # 去掉图例边框
+    plt.tight_layout()  # 调整子图之间距离
+    # plt.legend(["o", "*", "□"], ["1", "2", "3"], prop=font3, bbox_to_anchor=(1.24, 0.55), borderaxespad=0.)
+    plt.show()
+
+
+import mpl_toolkits.axisartist as axisartist
+# 2D 折线图，重要度
+def drawing_2D_perfomance(path, name, current_type):
+    font = {'family': 'Times New Roman', 'size': 12}
+    font2 = {'family': 'Times New Roman', 'size': 18}
+    font3 = font_manager.FontProperties(family='Times New Roman', style='normal', size=15)
+    colors = {"Appearance": "b", "Comfort": "g", "CP": "r", "EC": "c", "Handling": "m", "Interiors": "y", "Power": "k", "Space": "yellowgreen"}
+    data = pd.read_excel(path, sheet_name=name)
+    data = data.loc[data["Type"] == current_type]
+    aspects = colors.keys()
+    values = list(set(data["Value"].tolist()))
+    print("values = ", values)
+    figure = plt.figure(1)
+    i = 1
+    x = [2017, 2018, 2019, 2020]
+    for value in values:
+        print("value = ", value)
+        current_data_value = data.loc[data["Value"] == value]
+        quadrant = "13" + str(i)
+        # ax = figure.add_subplot(quadrant)
+        ax = axisartist.Subplot(figure, quadrant)
+        figure.add_axes(ax)
+        for aspect in aspects:
+            current_data_aspect = current_data_value.loc[current_data_value["Aspect"] == aspect]
+            y = [current_data_aspect[2017].tolist()[0], current_data_aspect[2018].tolist()[0], current_data_aspect[2019].tolist()[0], current_data_aspect[2020].tolist()[0]]
+            ax.plot(x, y, color=colors.get(aspect), linewidth=1.0)
+        # ax.set_xlabel("Year", fontdict=font2)
+        # ax.set_ylabel("Performance", fontdict=font2)
+        if current_type == "Purpose":
+            title = "(a)-Work needs" if value == "工作" else ("(b)-Living needs" if value == "生活" else "(c)-General needs")
+        else:
+            title = "(a)-Less than 200,000RMB" if value == 0 else ("(b)-200,000~500,000RMB" if value == 1 else "(c)-More than 500,000RMB")
+        print(i, title)
+        i += 1
+        ax.set_title(title, fontdict=font2)  # 设置标题
+
+        ax.set_xticklabels(["Before 2018", "2018", "2019", "After 2019"], fontdict=font)  # 设置坐标轴标签
+        ax.set_xticks([2017, 2018, 2019, 2020])
+
+        # 去掉边框
+        # ax.spines['top'].set_visible(False)
+        # ax.spines['right'].set_visible(False)
+
+        # 带上箭头
+        # ax.axis[:].set_visible(False)
+        ax.axis["bottom"].set_axisline_style("->", size=1.0)
+        ax.axis["left"].set_axisline_style("->", size=1.0)
+        ax.axis["top"].set_visible(False)
+        ax.axis["right"].set_visible(False)
+
+        ax.axis["bottom"].label.set_text("Year")
+        # ax.axis["bottom"].label.set_color("red")
+        ax.axis["bottom"].label.set_size(18)
+        ax.axis["bottom"].label.set_family("Times New Roman")
+        ax.axis["left"].label.set_text("Performance")
+        ax.axis["left"].label.set_size(18)
+        ax.axis["left"].label.set_family("Times New Roman")
+
+        # 设置坐标轴范围
+
+    leg = plt.legend(aspects, loc="lower center", prop=font3, bbox_to_anchor=(1.21, 0.3), borderaxespad=0., markerscale=5)  # 设置图例
+    leg.get_frame().set_linewidth(0.0)  # 去掉图例边框
+    # plt.tight_layout()  # 调整子图之间距离
+    plt.show()
+
+
+# 2D 折线图+散点图，重要度
+def drawing_2D_importance(path, name, current_type):
+    font = {'family': 'Times New Roman', 'size': 12}
+    font2 = {'family': 'Times New Roman', 'size': 18}
+    font3 = font_manager.FontProperties(family='Times New Roman', style='normal', size=15)
+    colors = {"Appearance": "b", "Comfort": "g", "CP": "r", "EC": "c", "Handling": "m", "Interiors": "y", "Power": "k", "Space": "yellowgreen"}
+    data = pd.read_excel(path, sheet_name=name)
+    data = data.loc[data["Type"] == current_type]
+    aspects = colors.keys()
+    values = list(set(data["Value"].tolist()))
+    print("values = ", values)
+    figure = plt.figure(1)
+    i = 1
+    x = [2017, 2018, 2019, 2020]
+    for value in values:
+        print("value = ", value)
+        current_data_value = data.loc[data["Value"] == value]
+        quadrant = "13" + str(i)
+        # ax = figure.add_subplot(quadrant)
+        ax = axisartist.Subplot(figure, quadrant)
+        figure.add_axes(ax)
+        for aspect in aspects:
+            current_data_aspect = current_data_value.loc[current_data_value["Aspect"] == aspect]
+            y = [current_data_aspect[2017].tolist()[0], current_data_aspect[2018].tolist()[0], current_data_aspect[2019].tolist()[0], current_data_aspect[2020].tolist()[0]]
+            # 折线图
+            ax.plot(x, y, color=colors.get(aspect), linewidth=1.0)
+            # 散点图
+            length = len(y)
+            for j in range(length):
+                current_x = x[j]
+                current_y = y[j]
+                # ax.plot(current_x, current_y, linewidth=0.5, marker='o', markerfacecolor=colors.get(aspect), markersize=6, label=aspect)
+                ax.scatter(current_x, current_y, color="w", edgecolors=colors.get(aspect), s=45, marker='o')
+        if current_type == "Purpose":
+            title = "(a)-Work needs" if value == "工作" else ("(b)-Living needs" if value == "生活" else "(c)-General needs")
+        else:
+            title = "(a)-Less than 200,000RMB" if value == 0 else ("(b)-200,000~500,000RMB" if value == 1 else "(c)-More than 500,000RMB")
+        print(i, title)
+        i += 1
+        ax.set_title(title, fontdict=font2)  # 设置标题
+
+        ax.set_xticklabels(["Before 2018", "2018", "2019", "After 2019"], fontdict=font)  # 设置坐标轴标签
+        ax.set_xticks([2017, 2018, 2019, 2020])
+
+        # 去掉边框
+        # ax.spines['top'].set_visible(False)
+        # ax.spines['right'].set_visible(False)
+
+        # 带上箭头
+        # ax.axis[:].set_visible(False)
+        ax.axis["bottom"].set_axisline_style("->", size=1.0)
+        ax.axis["left"].set_axisline_style("->", size=1.0)
+        ax.axis["top"].set_visible(False)
+        ax.axis["right"].set_visible(False)
+
+        ax.axis["bottom"].label.set_text("Year")
+        # ax.axis["bottom"].label.set_color("red")
+        ax.axis["bottom"].label.set_size(18)
+        ax.axis["bottom"].label.set_family("Times New Roman")
+        ax.axis["left"].label.set_text("Importance ranking")
+        ax.axis["left"].label.set_size(18)
+        ax.axis["left"].label.set_family("Times New Roman")
+
+        # 设置坐标轴范围
+
+    leg = plt.legend(aspects, loc="lower center", prop=font3, bbox_to_anchor=(1.21, 0.3), borderaxespad=0., markerscale=5)  # 设置图例
+    leg.get_frame().set_linewidth(0.0)  # 去掉图例边框
+    # plt.tight_layout()  # 调整子图之间距离
+    plt.show()
+
+
+# 画某款车的IPA数据，秦新能源
+def drawing_single_car(path, name):
+    font = {'family': 'Times New Roman', 'size': 12}
+    font2 = {'family': 'Times New Roman', 'size': 18}
+    font3 = font_manager.FontProperties(family='Times New Roman', style='normal', size=15)
+    colors = {"Appearance": "b", "Comfort": "g", "CP": "r", "EC": "c", "Handling": "m", "Interiors": "y", "Power": "k", "Space": "yellowgreen"}
+    markers = {1: "o", 2: "*", 3: "s"}
+    data = pd.read_excel(path, sheet_name=name)
+    aspects = colors.keys()
+
+    figure = plt.figure(1)
+
+    ax = figure.add_subplot(111)
     for aspect in aspects:
-        current_data = data.loc[data["Aspect"] == aspect]
-        x = current_data["Performance"].tolist()
-        y = current_data["Importance"].tolist()
+        current_data_aspect = data.loc[data["Aspect"] == aspect]
+        x = current_data_aspect["Performance"].tolist()
+        y = current_data_aspect["Importance"].tolist()
+        # 折线
         ax.plot(x, y, color=colors.get(aspect), linewidth=1.0)
+        # 箭头
+        length = len(x)
+        for j in range(length):
+            if j == 0:
+                continue
+            start_x = (x[j] + x[j - 1])/2.0
+            start_y = (y[j] + y[j - 1])/2.0
+            plt.annotate("", xy=(x[j - 1], y[j - 1]), xytext=(start_x, start_y), weight="extra bold", arrowprops=dict(arrowstyle="<-", color=colors.get(aspect), mutation_scale=20))
+        # 散点
+        shape = current_data_aspect["Shape"].tolist()
+        length = len(x)
+        for j in range(length):
+            current_x = x[j]
+            current_y = y[j]
+            current_shape = markers.get(shape[j])
+            ax.scatter(current_x, current_y, color=colors.get(aspect), s=45, marker=current_shape)
+        ax.set_xlabel("Performance", fontdict=font2)
+        ax.set_ylabel("Importance", fontdict=font2)
+
+    # 画中位线
+    min_x = min(data["Performance"].tolist()) - 0.02
+    max_x = max(data["Performance"].tolist()) + 0.02
+    median_x = median(data["Performance"].tolist())
+    min_y = min(data["Importance"].tolist()) - 0.2
+    max_y = max(data["Importance"].tolist()) + 0.2
+    median_y = median(data["Importance"].tolist())
+    ax.plot([median_x, median_x], [min_y, max_y], color="black", linewidth=1.0)
+    ax.plot([min_x, max_x], [median_y, median_y], color="black", linewidth=1.0)
+
+    # 设置坐标轴范围
+    ax.set_xlim(min_x, max_x)
+    ax.set_ylim(min_y, max_y)
+
+    leg = plt.legend(aspects, loc="lower center", prop=font3, bbox_to_anchor=(1.21, 0.35), borderaxespad=0., markerscale=5)  # 设置图例
+    leg.get_frame().set_linewidth(0.0)  # 去掉图例边框
+    plt.tight_layout()  # 调整子图之间距离
+    plt.show()
 
 
 if __name__ == "__main__":
     start_time = time.time()
     print("Start time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time)))
-    path = "data/动态IPA 3D数据.xlsx"
-    sheet_name = "Domestic"
+    path = "data/秦新能源数据.xlsx"
+    sheet_name = "IPA数据-20至50万"
     # drawing_v3(path)
-    drawing_together(path, sheet_name)
+    print("current sheet:", sheet_name)
+    # drawing_2d(path, sheet_name)
+    drawing_single_car(path, sheet_name)
 
     end_time = time.time()
     print("End time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time)))
