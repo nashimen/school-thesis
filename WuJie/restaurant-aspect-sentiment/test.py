@@ -105,9 +105,16 @@ def loadTencentEmbedding():
     # print(wv_from_text['的'])
 
 
+def getNumpyMax():
+    arr = np.array([[1, 2, 3], [5, 1, 4], [10, 15, 1], [12, 10, 9]])
+    print(arr)
+    print(np.argmax(arr, axis=1))
+    print(np.max(arr, axis=1))
+
+
 if __name__ == "__main__":
     print("start...")
-    loadTencentEmbedding()
+    getNumpyMax()
     # sampling()
 
     print("end...")

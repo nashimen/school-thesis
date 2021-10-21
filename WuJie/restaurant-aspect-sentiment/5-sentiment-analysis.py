@@ -331,6 +331,142 @@ def trainModel(dl_model_name, data_training, data_validation, data_test, tokeniz
     print('all F1_score:', F1_scores / len(columns))
 
 
+# data_test为最终需要预测的评论文本,保留正负向情感的标签&概率值
+def trainModel2(dl_model_name, data_training, data_validation, data_test, tokenizer, epoch, batch_size, batch_size_validation):
+    # 获取当天日期
+    now_time = datetime.datetime.now()
+    day = datetime.datetime.strftime(now_time, '%Y%m%d')
+    # 合并训练集和验证集
+    data = data_training.append(data_validation)
+    data = data.sample(frac=1)  # shuffle
+    data = data.reset_index(drop=True)  # 索引重置
+
+    # 生成X和Y
+    columns = data_training.columns.tolist()
+    columns.remove('content')
+    print("columns = ", columns)
+    print("columns' length = ", len(columns))
+    F1_scores = 0
+    # 查询已完成属性,json文件。加载文件，如果文件不存在或者无内容，则返回/创建一个空字典
+    for index, col in enumerate(columns):
+        if os.path.exists(cols_done_dictionary_path):
+            cols_done_dictionary = np.load(cols_done_dictionary_path, allow_pickle=True).item()
+            cols_done_1 = get_keys(cols_done_dictionary.get(dl_model_name), 1)  # 完成了一次的属性
+        else:
+            cols_done_dictionary = {}
+            cols_done_1 = []
+        if col in cols_done_1:
+            continue
+        print("cols_done_dictionary = ", cols_done_dictionary)
+        print("cols_done_1 = ", cols_done_1)
+
+        print("current col is:", col)
+        x, y = sampling(data, col)  # 喂给模型，x只包含content
+        x = x.tolist()
+        print("data length is", len(x))
+
+        # 标签+2
+        y = y + 2
+        y_col = list(y)
+
+        # 不要交叉验证，训练完模型后直接预测
+        if dl_model_name == "mlp":
+            model = createMLPModel()
+        elif dl_model_name == "bert":
+            model = createModel()
+
+        # 2.交叉验证数据集
+        kf = KFold(n_splits=5)
+        current_k = 0
+        rows = []
+        for train_index, validation_index in kf.split(x):
+            if current_k > 0:
+                continue
+            print("正在进行第", current_k, "轮交叉验证。。。")
+            current_k += 1
+            x_train, Y_train = np.array(x)[train_index], np.array(y_col)[train_index]
+            x_validation, Y_validation = np.array(x)[validation_index], np.array(y_col)[validation_index]
+
+            length = len(x_train)
+            length_validation = len(x_validation)
+
+            # 早停法，如果val_acc没有提高0.0001就停止
+            earlystop_callback = EarlyStopping(monitor='val_loss', mode='min', patience=2)
+            model.fit(generateSetForBert(x_train, Y_train, batch_size, tokenizer), steps_per_epoch=math.ceil(length / batch_size),
+                      epochs=epoch, batch_size=batch_size, verbose=1, validation_steps=math.ceil(length_validation / batch_size_validation),
+                      validation_data=generateSetForBert(x_validation, Y_validation, batch_size_validation, tokenizer), callbacks=[earlystop_callback])
+
+            # 预测验证集
+            y_val_pred = model.predict(generateXSetForBert(x_validation, length_validation, batch_size_validation, tokenizer), steps=math.ceil(length_validation / batch_size_validation))
+            y_val_pred = np.argmax(y_val_pred, axis=1)
+
+            # 准确率：在所有预测为正的样本中，确实为正的比例
+            # 召回率：本身为正的样本中，被预测为正的比例
+            print("y_val[20] = ", list(Y_validation)[:20])
+            print("y_val_pred[20] = ", list(y_val_pred)[:20])
+
+            # 计算MSE MAE R2 report
+            mse = mean_squared_error(Y_validation, y_val_pred)
+            mae = mean_absolute_error(Y_validation, y_val_pred)
+            r2 = r2_score(Y_validation, y_val_pred)
+            report = classification_report(Y_validation, y_val_pred, digits=4, output_dict=True)
+            # print(report)
+
+            F1_score = f1_score(Y_validation, y_val_pred, average='macro')
+            F1_scores += F1_score
+            print('第', index, '个属性', col, 'f1_score:', F1_score, 'ACC_score:', accuracy_score(Y_validation, y_val_pred))
+            print(datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m%d %H:%M:%S"))
+            # print("%Y-%m%d %H:%M:%S", time.localtime())
+
+            # 计算各种指标
+            accuracy = report.get("accuracy")
+            macro_avg = report.get("macro avg")
+            macro_precision = macro_avg.get("precision")
+            macro_recall = macro_avg.get("recall")
+            macro_f1 = macro_avg.get('f1-score')
+
+            row = [dl_model_name, col, macro_precision, macro_recall, macro_f1, accuracy, mse, mae, r2]
+            print("row:", row)
+            rows.append(row)
+
+            # 预测测试集
+            length_test = len(data_test)
+            # 去除回车符
+            data_test["content"] = data_test["content"].apply(lambda x: str(x).replace('\n', '').replace('\r', ''))
+            y_test_pred = model.predict(generateXSetForBert(data_test["content"], length_test, batch_size_validation, tokenizer), steps=math.ceil(length_test / batch_size_validation))
+            y_test_pred_index = np.argmax(y_test_pred, axis=1)  # 获取最大值对应索引
+            y_test_pred_prob = np.max(y_test_pred, axis=1)  # 获取最大值
+            # 保存测试集预测结果
+            data_test[col] = y_test_pred_index
+            data_test[col + "-prob"] = y_test_pred_prob
+            data_test.to_csv("result/" + str(day) + "-data_test_predict-debug.csv" if debug else "result/" + str(day) + "-data_test_predict_v2.csv", index=False, mode="w", encoding='utf_8_sig')
+
+            # 清理内存
+            K.clear_session()
+            del model
+            gc.collect()
+
+        # 保存当前属性的结果,整体的结果根据所有属性的结果来计算
+        print("正在保存结果。。。")
+        save_result_to_csv_cv(rows, day)
+
+        # 保存已经跑完的属性及其频率
+        # 格式为{model_name1:{col1:counter,col2:counter},model_name2:{col1:counter,col2:counter,col3:counter}}
+        if dl_model_name not in cols_done_dictionary.keys():  # 如果模型不存在的话
+            cols_done_dictionary[dl_model_name] = {col: 1}
+            print("模型不存在，设置,", col, "为1")
+        else:
+            if col not in cols_done_dictionary.get(dl_model_name).keys():  # 如果模型存在，但是当前col不存在
+                print("模型存在，但是,", col, "不存在，设置为1")
+                cols_done_dictionary[dl_model_name][col] = 1
+            else:  # 如果模型存在&当前col也存在，则counter设置为2
+                print("模型存在&当前,", col, "存在，设置为2")
+                cols_done_dictionary[dl_model_name][col] = 2
+        np.save(cols_done_dictionary_path, cols_done_dictionary)
+
+    print('all F1_score:', F1_scores / len(columns))
+
+
 # 把结果保存到csv
 # report是classification_report生成的字典结果
 def save_result_to_csv_cv(rows, day):
@@ -358,14 +494,14 @@ if __name__ == "__main__":
     batch_size_validation = 128
 
     print("》》》【4】构建模型", "。" * 100)
-    dl_model_name = 'mlp'
+    dl_model_name = 'bert'
     print("model name is ", dl_model_name)
 
     print("》》》【5】训练模型", "。" * 100)
     # 多模型对比
     # times = 2
     # for i in range(times):
-    trainModel(dl_model_name, data_training, data_validation, data_test, tokenizer, epoch, batch_size, batch_size_validation)
+    trainModel2(dl_model_name, data_training, data_validation, data_test, tokenizer, epoch, batch_size, batch_size_validation)
 
     end_time = time.time()
     print("End time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time)))
