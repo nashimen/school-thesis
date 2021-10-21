@@ -218,7 +218,9 @@ def generateXSetForBert(X_value, y_length, batch_size, tokenizer):
 
 
 # 下采样函数，输入col和data，返回X和Y
-def sampling(data, col):
+def sampling(data, col, sample=True):
+    if not sample:
+        return data['content'], data[col]
     # 进行下采样
     indice_2 = data[(data[col] == -2)].index.tolist()
     indice_others = data[(data[col] != -2)].index.tolist()
@@ -281,7 +283,8 @@ def trainModel(dl_model_name, data_training, data_validation, tokenizer, epoch, 
         print("cols_done_1 = ", cols_done_1)
 
         print("current col is:", col)
-        x, y = sampling(data, col)  # 喂给模型
+        sample = False
+        x, y = sampling(data, col, sample)  # 喂给模型
         x = x.tolist()
         print("data length is", len(x))
 
@@ -388,7 +391,7 @@ def trainModel(dl_model_name, data_training, data_validation, tokenizer, epoch, 
 # 把结果保存到csv
 # report是classification_report生成的字典结果
 def save_result_to_csv_cv(rows, day):
-    path = 'result/' + str(day) + '_bert_dl-debug.csv' if debug else 'result/' + str(day) + '_bert_dl.csv'
+    path = 'result/' + str(day) + '_bert_dl-debug.csv' if debug else 'result/' + str(day) + '_bert_dl-noSampling.csv'
     with codecs.open(path, "a", encoding='utf_8_sig') as f:
         writer = csv.writer(f)
         writer.writerows(rows)
