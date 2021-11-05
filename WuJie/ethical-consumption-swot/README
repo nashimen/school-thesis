@@ -1,0 +1,16 @@
+电商助农产品网络口碑与普通店铺产品网络口碑比较
+
+1-data-processing.py
+数据处理，合并所有数据
+
+2-sentence-sentiment-analysis.py
+句子（短文本）情感分析，使用百度的情感计算工具
+
+3-lda-topic-mining.py
+使用LDA模型发现主题
+
+4-domain-dictionary-construction.py
+领域词典构建，计算词汇与主题词的相似度，以此分类
+
+5-aspect-sentiment-match.py
+属性情感匹配

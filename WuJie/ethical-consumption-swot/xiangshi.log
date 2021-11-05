@@ -1,0 +1,114 @@
+Xiangshi Log: 2021-10-27 13:05:31,712 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:05:31,712 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:06:49,210 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:06:49,210 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:13:19,623 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:13:19,624 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:14:08,198 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:14:08,198 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:15:17,401 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:15:17,401 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:16:13,972 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:16:13,973 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:18:34,880 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:18:34,881 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:19:13,447 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:19:13,447 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:19:50,634 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:19:50,634 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:20:46,664 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:20:46,665 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:22:31,427 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:22:31,427 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:22:58,703 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:22:58,703 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:23:37,025 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:23:37,025 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:24:00,157 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:24:00,157 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:25:53,513 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:25:53,514 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:26:44,921 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:26:44,922 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:27:27,086 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:27:27,086 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:27:59,280 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:27:59,280 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:28:31,182 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 13:28:31,182 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-27 15:59:18,114 - INFO: Starting up Xiangshi
+Xiangshi Log - 10/27/21, 15:59:18 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-10-27 15:59:18,114 - INFO: Starting up Xiangshi
+Xiangshi Log - 10/27/21, 15:59:18 - INFO Starting up Xiangshi
+git.cmd Log - 10/27/21, 15:59:21 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\ethical-consumption-swot, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 10/27/21, 15:59:21 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\ethical-consumption-swot, universal_newlines=False, shell=None, istream=None)
+urllib3.connectionpool Log - 10/27/21, 15:59:25 - DEBUG Starting new HTTP connection (1): paddlepaddle.org.cn:80
+urllib3.connectionpool Log - 10/27/21, 15:59:25 - DEBUG http://paddlepaddle.org.cn:80 "GET /paddlehub/search?word=senta_cnn&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+15%3A59%3A25%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 301 184
+urllib3.connectionpool Log - 10/27/21, 15:59:25 - DEBUG Starting new HTTPS connection (1): paddlepaddle.org.cn:443
+urllib3.connectionpool Log - 10/27/21, 15:59:26 - DEBUG https://paddlepaddle.org.cn:443 "GET /paddlehub/search?word=senta_cnn&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+15%3A59%3A25%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 301 169
+urllib3.connectionpool Log - 10/27/21, 15:59:26 - DEBUG Starting new HTTPS connection (1): www.paddlepaddle.org.cn:443
+urllib3.connectionpool Log - 10/27/21, 15:59:26 - DEBUG https://www.paddlepaddle.org.cn:443 "GET /paddlehub/search?word=senta_cnn&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+15%3A59%3A25%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 200 8283
+Xiangshi Log: 2021-10-27 16:00:08,328 - INFO: Starting up Xiangshi
+Xiangshi Log - 10/27/21, 16:00:08 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-10-27 16:00:08,328 - INFO: Starting up Xiangshi
+Xiangshi Log - 10/27/21, 16:00:08 - INFO Starting up Xiangshi
+git.cmd Log - 10/27/21, 16:00:11 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\ethical-consumption-swot, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 10/27/21, 16:00:12 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\ethical-consumption-swot, universal_newlines=False, shell=None, istream=None)
+urllib3.connectionpool Log - 10/27/21, 16:00:15 - DEBUG Starting new HTTP connection (1): paddlepaddle.org.cn:80
+urllib3.connectionpool Log - 10/27/21, 16:00:15 - DEBUG http://paddlepaddle.org.cn:80 "GET /paddlehub/search?word=senta_cnn&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+16%3A00%3A15%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 301 184
+urllib3.connectionpool Log - 10/27/21, 16:00:15 - DEBUG Starting new HTTPS connection (1): paddlepaddle.org.cn:443
+urllib3.connectionpool Log - 10/27/21, 16:00:16 - DEBUG Starting new HTTP connection (1): paddlepaddle.org.cn:80
+urllib3.connectionpool Log - 10/27/21, 16:00:16 - DEBUG http://paddlepaddle.org.cn:80 "GET /paddlehub/search?word=lac&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+16%3A00%3A16%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 301 184
+urllib3.connectionpool Log - 10/27/21, 16:00:16 - DEBUG Starting new HTTPS connection (1): paddlepaddle.org.cn:443
+urllib3.connectionpool Log - 10/27/21, 16:00:16 - DEBUG https://paddlepaddle.org.cn:443 "GET /paddlehub/search?word=senta_cnn&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+16%3A00%3A15%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 301 169
+urllib3.connectionpool Log - 10/27/21, 16:00:16 - DEBUG Starting new HTTPS connection (1): www.paddlepaddle.org.cn:443
+urllib3.connectionpool Log - 10/27/21, 16:00:16 - DEBUG https://paddlepaddle.org.cn:443 "GET /paddlehub/search?word=lac&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+16%3A00%3A16%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 301 169
+urllib3.connectionpool Log - 10/27/21, 16:00:16 - DEBUG Starting new HTTPS connection (1): www.paddlepaddle.org.cn:443
+urllib3.connectionpool Log - 10/27/21, 16:00:17 - DEBUG https://www.paddlepaddle.org.cn:443 "GET /paddlehub/search?word=lac&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+16%3A00%3A16%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 200 11936
+urllib3.connectionpool Log - 10/27/21, 16:00:17 - DEBUG https://www.paddlepaddle.org.cn:443 "GET /paddlehub/search?word=senta_cnn&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+16%3A00%3A15%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 200 8283
+Xiangshi Log: 2021-10-27 16:07:16,176 - INFO: Starting up Xiangshi
+Xiangshi Log - 10/27/21, 16:07:16 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-10-27 16:07:16,177 - INFO: Starting up Xiangshi
+Xiangshi Log - 10/27/21, 16:07:16 - INFO Starting up Xiangshi
+git.cmd Log - 10/27/21, 16:07:20 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\ethical-consumption-swot, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 10/27/21, 16:07:20 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\ethical-consumption-swot, universal_newlines=False, shell=None, istream=None)
+urllib3.connectionpool Log - 10/27/21, 16:07:23 - DEBUG Starting new HTTP connection (1): paddlepaddle.org.cn:80
+urllib3.connectionpool Log - 10/27/21, 16:07:23 - DEBUG http://paddlepaddle.org.cn:80 "GET /paddlehub/search?word=senta_bilstm&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+16%3A07%3A23%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 301 184
+urllib3.connectionpool Log - 10/27/21, 16:07:23 - DEBUG Starting new HTTPS connection (1): paddlepaddle.org.cn:443
+urllib3.connectionpool Log - 10/27/21, 16:07:24 - DEBUG Starting new HTTP connection (1): paddlepaddle.org.cn:80
+urllib3.connectionpool Log - 10/27/21, 16:07:24 - DEBUG http://paddlepaddle.org.cn:80 "GET /paddlehub/search?word=lac&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+16%3A07%3A24%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 301 184
+urllib3.connectionpool Log - 10/27/21, 16:07:24 - DEBUG Starting new HTTPS connection (1): paddlepaddle.org.cn:443
+urllib3.connectionpool Log - 10/27/21, 16:07:24 - DEBUG https://paddlepaddle.org.cn:443 "GET /paddlehub/search?word=senta_bilstm&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+16%3A07%3A23%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 301 169
+urllib3.connectionpool Log - 10/27/21, 16:07:24 - DEBUG Starting new HTTPS connection (1): www.paddlepaddle.org.cn:443
+urllib3.connectionpool Log - 10/27/21, 16:07:25 - DEBUG https://paddlepaddle.org.cn:443 "GET /paddlehub/search?word=lac&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+16%3A07%3A24%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 301 169
+urllib3.connectionpool Log - 10/27/21, 16:07:25 - DEBUG Starting new HTTPS connection (1): www.paddlepaddle.org.cn:443
+urllib3.connectionpool Log - 10/27/21, 16:07:25 - DEBUG https://www.paddlepaddle.org.cn:443 "GET /paddlehub/search?word=senta_bilstm&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+16%3A07%3A23%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 200 9203
+urllib3.connectionpool Log - 10/27/21, 16:07:25 - DEBUG https://www.paddlepaddle.org.cn:443 "GET /paddlehub/search?word=lac&hub_version=2.0.4&paddle_version=2.0.0&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222021-10-27+16%3A07%3A24%22%2C+%22hub_name%22%3A+%22e598d3b739d0aa6ef9746f32bbc45366-1618129861%22%7D HTTP/1.1" 200 11936
+Xiangshi Log: 2021-10-28 09:17:12,956 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 09:17:12,957 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 09:45:43,216 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 09:45:43,216 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 09:46:14,014 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 09:46:14,014 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 09:48:03,849 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 09:48:03,850 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 11:53:27,243 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 11:53:27,244 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 14:51:10,622 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 14:51:10,622 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 14:51:56,347 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 14:51:56,348 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 14:54:32,210 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 14:54:32,211 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 15:04:11,750 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 15:04:11,750 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 15:05:15,124 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 15:05:15,125 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 15:28:23,017 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 15:28:23,017 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 15:53:37,292 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 15:53:37,292 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 15:54:15,522 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 15:54:15,522 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 15:54:57,415 - INFO: Starting up Xiangshi
+Xiangshi Log: 2021-10-28 15:54:57,415 - INFO: Starting up Xiangshi
