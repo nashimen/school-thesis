@@ -308,15 +308,15 @@ from sklearn import feature_extraction
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import CountVectorizer
 def tfidfTest():
-    '''
     corpus = [
         '食物 位置 车站',
         '早餐 餐厅',
         '餐厅 公交站',
-        '早餐 车站',
+        '早餐',
     ]
     '''
     corpus = ['食物 位置 车站 车站 早餐 餐厅 早餐 车站']
+    '''
     # corpus = corpus[0].split(" ")
     vectorizer = CountVectorizer()  # 该类会将文本中的词语转换为词频矩阵，矩阵元素a[i][j] 表示j词在i类文本下的词频
     transformer = TfidfTransformer()  # 该类会统计每个词语的tf-idf权值
@@ -515,10 +515,33 @@ def resize_subplot():
     plt.show()
 
 
+def random_w2v():
+    print(np.zeros(200))
+
+
+def dict_test():
+    dictionary = {"a": 1, "b": 3, "e": 100}
+    print(dictionary.values())
+    dict_list = list(dictionary.values())
+    print(type(dict_list))
+    print(type(np.array(dict_list)))
+    print(np.array(list(dictionary.values())))
+    print(np.array([1, 3, 100]))
+
+
+def np_df():
+    reduced_embeddings = np.array([[1, 2], [2, 5], [3, 1], [4, 6]])
+    # print(reduced_embeddings)
+    print(reduced_embeddings[:, 0])
+    print(reduced_embeddings[:, 1])
+    df = pd.DataFrame(reduced_embeddings)
+    print(df)
+
+
 if __name__ == "__main__":
     print("start...")
 
-    resize_subplot()
+    np_df()
 
     print("end...")
 

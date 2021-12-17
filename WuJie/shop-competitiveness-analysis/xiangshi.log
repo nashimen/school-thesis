@@ -13919,3 +13919,81 @@ matplotlib.font_manager Log - 11/28/21, 14:57:01 - DEBUG findfont: score(<Font '
 matplotlib.font_manager Log - 11/28/21, 14:57:01 - DEBUG findfont: score(<Font 'Euclid Math One' (eumat1b.ttf) normal normal 700 normal>) = 10.335
 matplotlib.font_manager Log - 11/28/21, 14:57:01 - DEBUG findfont: score(<Font 'Arial' (arial.ttf) normal normal 400 normal>) = 5.05
 matplotlib.font_manager Log - 11/28/21, 14:57:01 - DEBUG findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=11.0 to SimHei ('C:\\Windows\\Fonts\\simhei.ttf') with score of 0.050000.
+Xiangshi Log: 2021-12-01 15:24:33,234 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 15:24:33 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 15:24:33,235 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 15:24:33 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 15:24:37 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 15:24:37 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+Xiangshi Log: 2021-12-01 15:25:21,678 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 15:25:21 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 15:25:21,678 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 15:25:21 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 15:25:25 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 15:25:25 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+Xiangshi Log: 2021-12-01 15:50:43,829 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 15:50:43 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 15:50:43,829 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 15:50:43 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 15:50:47 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 15:50:47 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+Xiangshi Log: 2021-12-01 15:51:23,645 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 15:51:23 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 15:51:23,645 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 15:51:23 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 15:51:27 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 15:51:27 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+Xiangshi Log: 2021-12-01 17:32:06,059 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 17:32:06 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 17:32:06,059 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 17:32:06 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 17:32:09 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 17:32:10 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+Xiangshi Log: 2021-12-01 17:50:42,642 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 17:50:42 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 17:50:42,642 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 17:50:42 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 17:50:46 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 17:50:46 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+Xiangshi Log: 2021-12-01 17:51:14,638 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 17:51:14 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 17:51:14,639 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 17:51:14 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 17:51:18 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 17:51:18 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+Xiangshi Log: 2021-12-01 17:52:21,114 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 17:52:21 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 17:52:21,114 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 17:52:21 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 17:52:24 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 17:52:25 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+Xiangshi Log: 2021-12-01 17:52:49,196 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 17:52:49 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 17:52:49,196 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 17:52:49 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 17:52:53 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 17:52:53 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+Xiangshi Log: 2021-12-01 17:53:15,023 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 17:53:15 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 17:53:15,024 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 17:53:15 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 17:53:19 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 17:53:19 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+Xiangshi Log: 2021-12-01 19:20:12,229 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 19:20:12 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 19:20:12,229 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 19:20:12 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 19:20:16 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 19:20:16 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+Xiangshi Log: 2021-12-01 19:20:42,941 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 19:20:42 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 19:20:42,941 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 19:20:42 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 19:20:46 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 19:20:46 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+Xiangshi Log: 2021-12-01 19:21:55,508 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 19:21:55 - INFO Starting up Xiangshi
+Xiangshi Log: 2021-12-01 19:21:55,508 - INFO: Starting up Xiangshi
+Xiangshi Log - 12/01/21, 19:21:55 - INFO Starting up Xiangshi
+git.cmd Log - 12/01/21, 19:21:59 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)
+git.cmd Log - 12/01/21, 19:21:59 - DEBUG Popen(['git', 'version'], cwd=E:\coding\workspace\python_demo\school-thesis\WuJie\shop-competitiveness-analysis, universal_newlines=False, shell=None, istream=None)

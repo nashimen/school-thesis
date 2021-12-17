@@ -8,3 +8,6 @@
 
 5-sentiment-analysis.py
 应用前面的模型（Bert）完成评论细粒度情感分类
+
+6-MckinseyMatrix-Drawing.py
+画图
