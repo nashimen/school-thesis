@@ -20,3 +20,6 @@
 
 9-SA-allAttr-lexicon.py
 基于领域词典的情感计算
+
+10-SA-allAttr-lexicon-evaluation.py
+评估使用情感词典计算的结果
