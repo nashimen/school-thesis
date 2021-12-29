@@ -108,7 +108,7 @@ def shortText_attribute_match(text):
             for attribute, words in dictionary.items():
                 similarity = 0
                 for word in words:
-                    similarity = max(similarity, xs.cossim([sentence, word]))
+                    similarity = max(similarity, xs.cossim([sentence], [word]))
                 if max_similarity < similarity:
                     max_similarity = similarity
                     topic = attribute
@@ -129,7 +129,7 @@ if __name__ == "__main__":
     print("Start time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time)))
     version = time.strftime('%Y%m%d%H%M%S', time.localtime(start_time))
 
-    path = "test/test.csv" if debug else "data/sentiment_analysis_training_set.csv"
+    path = "test/test.csv" if debug else "data/sentiment_analysis_validation_set.csv"
     data_global = pd.read_csv(path, encoding="utf-8")
     columns = data_global.columns
 
@@ -146,7 +146,7 @@ if __name__ == "__main__":
     data_result["dish_portion"], data_result["dish_taste"], data_result["dish_look"] = np.array(processed.to_list()).T
 
     # 将以上结果进行保存
-    s_path = "test/shortTexts-test.xlsx" if debug else "result/shortTexts.xlsx"
+    s_path = "test/shortTexts-test.xlsx" if debug else "result/shortTexts-validation.xlsx"
     data_result.to_excel(s_path, index=False)
 
     end_time = time.time()
