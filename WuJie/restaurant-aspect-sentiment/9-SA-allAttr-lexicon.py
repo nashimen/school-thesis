@@ -1,5 +1,10 @@
-import numpy as np
-import jieba, re
+import time, codecs, csv, math, numpy as np, random, datetime, os, gc, pandas as pd, jieba, re, sys
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import CountVectorizer
+import paddlehub as hub
+import xiangshi as xs
+
+debug = False
 
 
 # 读取文件，文件读取函数
@@ -103,6 +108,8 @@ def match_adverb(word, sentiment_value):
 
 # 对每一条微博打分
 def single_sentiment_score(sent):
+    if pd.isna(sent):
+        return -2
     # 分词
     words = list(jieba.cut(sent))
     seg_words = del_stopwords(words)
@@ -142,7 +149,7 @@ def single_sentiment_score(sent):
     # 计算情感值
     sentiment_score = poscount - negcount
 
-    return sentiment_score
+    return 1 if sentiment_score > 0 else -1 if sentiment_score < 0 else 0
 
 
 # 分析test_data.txt 中的所有微博，返回一个列表，列表中元素为（分值，微博）元组
@@ -160,14 +167,18 @@ if __name__ == "__main__":
     print("开始执行main函数咯。。。")
 
     # 读取数据
-    path_global = "result/shortTexts.xlsx"
+    path_global = "test/shortTexts-test.xlsx" if debug else "result/shortTexts-validation.xlsx"
+    data_global = pd.read_excel(path_global, engine="openpyxl")
+    # print(data_global.columns)
 
     # 依次计算不同属性情感
+    columns = data_global.columns
+    data_result = pd.DataFrame()
+    for col in columns:
+        data_result[col] = data_global.apply(lambda row_global: single_sentiment_score(row_global[col]), axis=1)
 
-    path = "data\\texts.txt"
-    sentences_global = read_file(path)
-    scores = run_score(sentences_global)
-    print("scores = ", scores)
+    s_path = "test/predicted-test.xlsx" if debug else "result/predicted.xlsx"
+    data_result.to_excel(s_path, index=False)
 
     print("main函数执行结束咯。。。")
 
