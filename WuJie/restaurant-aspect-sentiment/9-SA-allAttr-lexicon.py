@@ -1,9 +1,5 @@
-# import pyltp
-# from pyltp import Segmentor
-from pyltp import SentenceSplitter
-# from pyltp import Postagger
 import numpy as np
-import jieba
+import jieba, re
 
 
 # 读取文件，文件读取函数
@@ -18,7 +14,8 @@ def read_file(filename):
 
 #文本分句
 def cut_sentence(text):
-    sentences = SentenceSplitter.split(text)
+    pattern = r',|\.|;|\?|:|!|\(|\)|，|。|、|；|·|！| |…|（|）|~|～|：|；'
+    sentences = list(re.split(pattern, text))
     print("sentences = ", sentences)
     sentence_list = [w for w in sentences]
     return sentence_list
@@ -162,9 +159,14 @@ def run_score(contents):
 if __name__ == "__main__":
     print("开始执行main函数咯。。。")
 
+    # 读取数据
+    path_global = "result/shortTexts.xlsx"
+
+    # 依次计算不同属性情感
+
     path = "data\\texts.txt"
-    sentences = read_file(path)
-    scores = run_score(sentences)
+    sentences_global = read_file(path)
+    scores = run_score(sentences_global)
     print("scores = ", scores)
 
     print("main函数执行结束咯。。。")

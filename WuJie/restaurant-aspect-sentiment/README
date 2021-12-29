@@ -15,5 +15,8 @@
 7-surface-drawing.py
 3D曲面图
 
-8-SA-allAttr-lexicon.py
+8-attribute-match.py
+属性匹配，为了使用基于词典的情感分析方法
+
+9-SA-allAttr-lexicon.py
 基于领域词典的情感计算

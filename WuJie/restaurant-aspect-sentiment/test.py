@@ -112,9 +112,27 @@ def getNumpyMax():
     print(np.max(arr, axis=1))
 
 
+# 检测包含关系
+def detectInclusion():
+    s = "开车去的餐厅"
+    word = "开车"
+    word2 = "停车"
+    print(s.find(word) >= 0)
+    print(s.find(word2) >= 0)
+
+
+# 相似度函数
+import xiangshi as xs
+def similarity():
+    sentence = "哎"
+    word = "餐厅"
+    print(xs.cossim([sentence, word]))
+
+
 if __name__ == "__main__":
     print("start...")
-    getNumpyMax()
+    similarity()
     # sampling()
 
     print("end...")
+

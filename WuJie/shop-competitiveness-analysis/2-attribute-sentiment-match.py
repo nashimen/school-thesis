@@ -116,7 +116,7 @@ def judgeTopicBySimilarity(text):
     for key, value in dictionary.items():
         sim = 0
         for v in value:
-            sim = max(sim, xs.cossim([text], [v]))  # 找到当前key下最大的相似度
+            sim = max(sim, xs.cossim([text, v]))  # 找到当前key下最大的相似度
         if max_similarity < sim:
             max_similarity = sim
             topic = key
