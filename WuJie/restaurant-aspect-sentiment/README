@@ -23,3 +23,6 @@
 
 10-SA-allAttr-lexicon-evaluation.py
 评估使用情感词典计算的结果
+
+11-SA-allAttr-lexicon-evaluation.py
+根据预测结果，计算各种指标：F1 P R MAE
