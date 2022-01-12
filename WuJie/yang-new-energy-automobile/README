@@ -50,3 +50,6 @@
 
 12-get-top10-words.py
 获取每个属性下的Top10热词
+
+13-attribute-importance-calculating.py
+属性重要度计算，TFIDF，所有年份合并计算
