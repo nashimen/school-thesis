@@ -147,22 +147,22 @@ if __name__ == "__main__":
     field_words_dict = get_field_words(path)
 
     # 获取语料库（最满意评论&最不满意评论）
-    path = "test/新能源感知(2 types)-test_v2.xlsx" if debug else "data/新能源感知(2 types)_v2.xlsx"
+    path = "test/新能源感知(2 types)-test_v2.xlsx" if debug else "data/新能源感知-20211016.xlsx"
     data = pd.read_excel(path, engine='openpyxl', usecols=[9, 31, 32, 36])
     print(data.columns)
     # print(data.head())
 
     result = pd.DataFrame(columns=["type", "year", "aspect", "component", "tfidf"])
-    types = set(data["类型"].tolist())
+    types = set(data["来源类型"].tolist())
     for current_type in types:
         print("正在处理", current_type)
         # 分别处理当前类型的各个年份，每个年份数据为一个文档
-        current_component_tfidf = calculate_tfidf(data.loc[data["类型"] == current_type])
+        current_component_tfidf = calculate_tfidf(data.loc[data["来源类型"] == current_type])
         # 计算TFIDF值+匹配属性
         df = search_aspect_component_tfidf(current_type, current_component_tfidf, field_words_dict)
         result = result.append(df)
 
-    s_path = "test/attribute_importance.xlsx" if debug else "result/attribute_importance.xlsx"
+    s_path = "test/attribute_importance.xlsx" if debug else "result/attribute_importance_来源类型.xlsx"
     result.to_excel(s_path, index=False)
 
     end_time = time.time()
