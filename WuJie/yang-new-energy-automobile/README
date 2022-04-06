@@ -53,3 +53,6 @@
 
 13-attribute-importance-calculating.py
 属性重要度计算，TFIDF，所有年份合并计算
+
+15-path-experiment-drawing.py
+路径实验作图

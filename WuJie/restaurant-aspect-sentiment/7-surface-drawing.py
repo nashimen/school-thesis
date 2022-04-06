@@ -1,13 +1,7 @@
 import time, codecs, csv, math, numpy as np, random, datetime, os, gc, pandas as pd, jieba, re, sys
-from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.feature_extraction.text import CountVectorizer
-import numpy
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.font_manager as font_manager
-from haishoku.haishoku import Haishoku
-from colormap import rgb2hex
 
 import warnings
 warnings.filterwarnings("ignore", category=Warning)
@@ -52,7 +46,7 @@ def drawing2(path, name):
     ax = Axes3D(fig)
 
     restaurant = [1, 2]
-    data = pd.read_excel(path, sheet_name=name)
+    data = pd.read_excel(path, sheet_name=name, engine="openpyxl")
     for rest in restaurant:
         X = [1, 2, 3, 4]
         Y = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
@@ -84,10 +78,10 @@ def drawing2(path, name):
         print(Z.shape)
 
         if rest == 1:
-            color = "#FF6347"
+            color = "#FF6347"  # 红色
             alpha = 1
         else:
-            color = "#1E90FF"
+            color = "#1E90FF"  # 蓝色
             alpha = 0.5
         ax.plot_surface(X, Y, Z, rstride=64, cstride=64, color=color, antialiased=False, alpha=alpha)  # 绘制曲面图
 
@@ -113,7 +107,7 @@ if __name__ == "__main__":
     start_time = time.time()
     print("Start time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time)))
 
-    path_global = "data/GE矩阵-20211217.xlsx"
+    path_global = "data/GE矩阵-20220225.xlsx"
     table_name = "分年份(16-19)-drawing2"
 
     # drawing()

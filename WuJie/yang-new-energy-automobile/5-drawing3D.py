@@ -577,7 +577,8 @@ def drawing_2D_perfomance(path, name, current_type):
     font2 = {'family': 'Times New Roman', 'size': 18}
     font3 = font_manager.FontProperties(family='Times New Roman', style='normal', size=15)
     colors = {"Appearance": "b", "Comfort": "g", "CP": "r", "EC": "c", "Handling": "m", "Interiors": "y", "Power": "k", "Space": "yellowgreen"}
-    data = pd.read_excel(path, sheet_name=name)
+    data = pd.read_excel(path, sheet_name=name, engine="openpyxl")
+    print("data:", data)
     data = data.loc[data["Type"] == current_type]
     aspects = colors.keys()
     values = list(set(data["Value"].tolist()))
@@ -585,15 +586,18 @@ def drawing_2D_perfomance(path, name, current_type):
     figure = plt.figure(1)
     i = 1
     x = [2017, 2018, 2019, 2020]
+    # values = ["Purpose"]
     for value in values:
         print("value = ", value)
         current_data_value = data.loc[data["Value"] == value]
+        print("current_data_value:", current_data_value)
         quadrant = "13" + str(i)
         # ax = figure.add_subplot(quadrant)
         ax = axisartist.Subplot(figure, quadrant)
         figure.add_axes(ax)
         for aspect in aspects:
             current_data_aspect = current_data_value.loc[current_data_value["Aspect"] == aspect]
+            print("current_data_aspect:", current_data_aspect)
             y = [current_data_aspect[2017].tolist()[0], current_data_aspect[2018].tolist()[0], current_data_aspect[2019].tolist()[0], current_data_aspect[2020].tolist()[0]]
             ax.plot(x, y, color=colors.get(aspect), linewidth=1.0)
         # ax.set_xlabel("Year", fontdict=font2)
@@ -771,13 +775,13 @@ def drawing_single_car(path, name):
 if __name__ == "__main__":
     start_time = time.time()
     print("Start time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time)))
-    path = "data/attribute_importance-20211018（python数据）.xlsx"
-    sheet_name = "数据-排名倒序"
+    path = "data/attribute_performance-20211018（python数据）.xlsx"
+    sheet_name = "数据"
     # drawing_v3(path)
     print("current sheet:", sheet_name)
     # drawing_2d(path, sheet_name)
-    current_type = "Price"
-    drawing_2D_importance(path, sheet_name, current_type)
+    current_type = "Purpose"
+    drawing_2D_perfomance(path, sheet_name, current_type)
 
     end_time = time.time()
     print("End time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time)))
