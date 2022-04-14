@@ -8,7 +8,7 @@ warnings.filterwarnings("ignore", category=Warning)
 
 pd.set_option('display.max_columns', None)
 
-debug = True
+debug = False
 
 
 # 生成停用词表
