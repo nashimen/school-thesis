@@ -1,0 +1,10 @@
+这个项目做基于在线评论的SWOT构建
+
+1-pyltp-test.py
+测试哈工大ltp工具
+
+2-hot-words-extraction.py
+提取关键词
+
+3-hot-words-attributes-matching.py
+将抽取的关键词与属性进行匹配，以计算不同属性的重要度
