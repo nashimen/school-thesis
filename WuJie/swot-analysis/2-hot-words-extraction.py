@@ -82,10 +82,10 @@ if __name__ == "__main__":
 
     # 读取文件
     print(">>>正在读取数据。。。")
-    path_global = "data/test/2 在线评论文本数据-test.xlsx" if debug else "data/2 在线评论文本数据.xlsx"
+    path_global = "data/test/2 在线评论文本数据-test.xlsx" if debug else "data/2 在线评论文本数据-2021.xlsx"
     data_global = pd.read_excel(path_global, engine="openpyxl")
 
-    s_path_global = "data/test/hot-words-test.xlsx" if debug else "result/hot-words.xlsx"
+    s_path_global = "data/test/hot-words-test.xlsx" if debug else "result/hot-words-2021.xlsx"
 
     result = calculate_tfidf(data_global["评论文本"].tolist())
 

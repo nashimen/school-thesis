@@ -7,7 +7,7 @@ warnings.filterwarnings("ignore", category=Warning)
 
 pd.set_option('display.max_columns', None)
 
-debug = False
+debug = True
 debugLength = 30
 
 origin_dictionary = {
@@ -138,9 +138,11 @@ if __name__ == "__main__":
     result = word_attribute_match(data_global["word"].tolist())
 
     attributes = ["Location", "Value", "Room", "Restaurant", "Bathroom", "Cleanliness", "Parking", "SleepQuality", "Surrounding", "Internet", "Service", "Transport", "Facility"]
+    df = pd.DataFrame()
+    print(df.columns)
     # 依次处理每个属性
     for attribute in attributes:
-        df = pd.concat([pd.DataFrame({attribute: result[attribute]})], axis=1)
+        df = pd.concat([pd.DataFrame({attribute: result[attribute]}), df], axis=1)
     df.to_excel(s_path_global, index=False)
 
     end_time = time.time()
