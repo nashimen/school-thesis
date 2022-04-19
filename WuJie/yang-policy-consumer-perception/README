@@ -1,0 +1,5 @@
+这个项目是分析政策对于汽车消费者感受是否有影响
+文本挖掘部分
+
+1-sentiment-readability-calculation.py
+计算属性情感&评论可读性
