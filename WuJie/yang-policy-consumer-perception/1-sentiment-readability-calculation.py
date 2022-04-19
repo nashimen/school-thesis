@@ -7,7 +7,7 @@ warnings.filterwarnings("ignore", category=Warning)
 
 pd.set_option('display.max_columns', None)
 
-debug = False
+debug = True
 debugLength = 30
 
 
@@ -73,12 +73,16 @@ def merge_attribute(current_row, attrs):
 def calculate_sentence_number(current_row):
     number = current_row.count(".") + current_row.count("。") + current_row.count("？") + current_row.count("?") + \
              current_row.count("！") + current_row.count("!") + current_row.count(";") + current_row.count("；")
+    if number == 0:
+        print("current_row:", current_row)
     return number
 
 
 # 统计句子平均长度
 def calculate_average_sentence_length(current_number, current_length):
     # print("current_number:", current_number, ", current_length:", current_length)
+    if current_number == 0:
+        return -1
     return current_length / current_number
 
 
@@ -91,12 +95,17 @@ def calculate_average_word_number(current_row, current_length):
     # print(type(line),", line:", line)
     line = [word.strip() for word in line]
 
+    if len(line) == 0:
+        return -1
+
     # 计算数量
     return current_length / len(line)
 
 
 # 计算可读性
 def calculate_readability(current_sentence_length, current_word_number):
+    if current_sentence_length <= 0 or current_word_number <= 0:
+        return -1
     return (0.39 * current_sentence_length) + (11.8 * current_word_number) - 15.59
 
 
@@ -112,7 +121,7 @@ if __name__ == "__main__":
     # 读取文件
     print(">>>正在读取数据。。。")
 
-    current_website = "太平洋汽车"
+    current_website = "爱卡汽车"
 
     if current_website == "爱卡汽车":
         path = "data/test/爱卡汽车-test.xlsx" if debug else "data/爱卡汽车汇总.xlsx"
