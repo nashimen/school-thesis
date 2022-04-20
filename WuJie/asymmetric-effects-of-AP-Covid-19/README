@@ -8,3 +8,12 @@
 
 3-hot-words-extraction.py
 分别提取Covid-19前后的热词
+
+4-opinion-extraction.py
+提取不同属性下的消费者观点
+
+5-opinion-clustering.py
+对提取的消费者观点进行聚类
+
+6-sentence-embedding.py
+测试sentence-transformers
