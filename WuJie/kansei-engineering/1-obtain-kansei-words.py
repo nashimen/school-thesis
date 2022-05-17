@@ -8,8 +8,8 @@ warnings.filterwarnings("ignore", category=Warning)
 
 pd.set_option('display.max_columns', None)
 
-debug = True
-debugLength = 30# 数据预处理
+debug = False
+debugLength = 30
 
 
 stoplist = []
@@ -23,11 +23,15 @@ for line in lines:
 def obtain_candidates_single_review(current_review):
     current_result = []
     words = pseg.cut(current_review)
-    for word, flag in words:
-        if str(flag).startswith('a') or str(flag).startswith('d'):
-            if word not in stoplist:
-                # print(word, flag)
-                current_result.append(word)
+    # print("words:", words)
+    try:
+        for word, flag in words:
+            # print(word, flag)
+            if str(flag).startswith('a') or str(flag).startswith('d'):
+                if word not in stoplist:
+                    current_result.append(word)
+    except Exception as e:
+        print("Exception:", e)
 
     return current_result
 
@@ -39,6 +43,8 @@ def obtain_candidates(current_corpus):
     current_candidates = set()
     for current_review in current_corpus["评论文本"]:
         current_candidates_single = obtain_candidates_single_review(current_review)
+        if len(current_candidates_single) < 1:
+            continue
         for word in current_candidates_single:
             current_candidates.add(word)
 
