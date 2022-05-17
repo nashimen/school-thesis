@@ -1,4 +1,4 @@
-import time, codecs, csv, math, numpy as np, random, datetime, os, gc, pandas as pd, jieba, re, sys
+import time, codecs, csv, math, numpy as np, random, datetime, os, gc, pandas as pd, jieba, re, sys, xlrd
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
@@ -23,7 +23,8 @@ def load_w2v(words):
 
     embeddings = []
     for word in words:
-        embeddings.append(model.encode(word, convert_to_numpy=True))
+        embeddings.append(model.encode(word, convert_to_tensor=True))
+        # embeddings.append(model.encode(word, convert_to_numpy=True))
 
     return embeddings
 
@@ -54,9 +55,20 @@ if __name__ == "__main__":
     print("Start time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time)))
 
     # 直接读取文件中的words
-    path_global = "data/观点抽取结果.xlsx"
-    data_global = pd.read_excel(path_global, nrows=debugLength if debug else None, engine="openpyxl")
+    path_global = "data/Safety.txt"
+
+    words_global = []
+
+    with open(path_global, encoding="utf-8") as f:
+        for line in f.readlines():
+            # print("line:", line)
+            words_global.append(line.strip())
+
+    '''
+    # data_global = pd.read_excel(path_global, nrows=debugLength if debug else None)
+    # data_global = pd.read_csv(path_global, encoding="utf-8", nrows=debugLength if debug else None)
     words_global = data_global["Safety"].tolist()
+    '''
     if debug:
         print("before:", words_global)
     # 删除0值和长度小于2的列
@@ -91,7 +103,6 @@ if __name__ == "__main__":
     embeddings_global = pca.fit_transform(embeddings_global)
 
     # 确定了聚类簇数之后，执行下面代码进行类别判断与保存
-    '''
     df = pd.DataFrame()
     # 聚类
     s_path_global = "test/5-clustering-test.xlsx" if debug else "result/5-clustering.xlsx"
@@ -107,7 +118,6 @@ if __name__ == "__main__":
     df["X"] = pd.Series(reduced_embeddings[:, 0])
     df["Y"] = pd.Series(reduced_embeddings[:, 1])
     df.to_excel(s_path_global, index=False)
-    '''
 
     end_time = time.time()
     print("End time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time)))

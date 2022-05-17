@@ -8,3 +8,8 @@
 
 3-hot-words-attributes-matching.py
 将抽取的关键词与属性进行匹配，以计算不同属性的重要度
+
+4-pseudocode.py
+属性表现计算的伪代码
+
+
