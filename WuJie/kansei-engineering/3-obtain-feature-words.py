@@ -1,6 +1,8 @@
 import time, codecs, csv, math, numpy as np, random, datetime, os, gc, pandas as pd, jieba, re, sys
-import paddlehub as hub
+from sentence_transformers import SentenceTransformer, util
+from sklearn.metrics.pairwise import cosine_similarity
 import jieba.posseg as pseg
+
 # from pylab import *
 
 import warnings
@@ -8,7 +10,7 @@ warnings.filterwarnings("ignore", category=Warning)
 
 pd.set_option('display.max_columns', None)
 
-debug = True
+debug = False
 debugLength = 30
 
 
@@ -26,8 +28,8 @@ def obtain_candidates_single_review(current_review):
     # print("words:", words)
     try:
         for word, flag in words:
-            if str(flag) is 'a' or str(flag) is 'd':
-                print(word, flag)
+            if str(flag).startswith('n'):
+                # print(word, flag)
                 if word not in stoplist:
                     current_result.append(word)
     except Exception as e:
@@ -39,7 +41,7 @@ def obtain_candidates_single_review(current_review):
 # process online reviews: segment word -> 词性判断 -> remain adj/adv -> remove stop words
 def obtain_candidates(current_corpus):
     print(current_corpus.head())
-    # 分词→判断词性→保存adj/adv至Set
+    # 分词→判断词性→保存nouns至Set
     current_candidates = set()
     for current_review in current_corpus["评论文本"]:
         current_candidates_single = obtain_candidates_single_review(current_review)
@@ -59,14 +61,14 @@ if __name__ == "__main__":
     corpus_path = "test/1 Corpus-test.xlsx" if debug else "data/1 Corpus.xlsx"
     corpus = pd.read_excel(corpus_path, engine="openpyxl")
 
-    # process online reviews: segment word -> 词性判断 -> remain adj/adv -> remove stop words
+    # process online reviews: segment word -> 词性判断 -> remain nouns -> remove stop words
     candidates = obtain_candidates(corpus)
     if debug:
         print(candidates)
     print("candidates:", len(candidates))
 
     # save candidates
-    save_path = "test/2 candidates-test.txt" if debug else "result/1 candidates.txt"
+    save_path = "test/4 feature words-test.txt" if debug else "result/3 feature words.txt"
     file = open(save_path, 'w')
     file.write(str(list(candidates)))
     file.close()

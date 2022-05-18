@@ -6,4 +6,8 @@
 2-calculate-word-similariy.py
 计算Kansei words candidates与Seed words的相似度，进而得到其情感极性和分数
 
-3-
+3-obtain-feature-words.py
+获取Kansei words，即nouns
+
+4-clustering.py
+在线评论分词→Bert词向量表示→聚类
