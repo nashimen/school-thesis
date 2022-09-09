@@ -19,7 +19,7 @@ def is_Chinese(word):
     return False
 
 
-# 提取短文本
+# 提取短文本（即句子）
 def get_abstract(content):
     # print("content = ", content)
     # 使用逗号替换空格

@@ -1,0 +1,6 @@
+这个项目是使用深度学习方法评估游客满意度
+
+1-opinion-extraction.py
+使用百度的paddle进行观点提取
+
+2-opinion-attribute-matching.py
