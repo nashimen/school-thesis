@@ -4,3 +4,10 @@
 使用百度的paddle进行观点提取
 
 2-opinion-attribute-matching.py
+观点和属性匹配，只是匹配，结果没有与评论ID对应
+
+3-opinion-attribute-matching-17attributes.py
+观点和属性匹配，结果与评论ID对应，方便后续根据方面情感获取负面观点
+
+4-negative-opinion-obtaining.py
+根据观点匹配结果和方面级情感，获取负面情感的观点

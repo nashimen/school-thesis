@@ -6,8 +6,8 @@ warnings.filterwarnings("ignore", category=Warning)
 
 pd.set_option('display.max_columns', None)
 
-debug = True
-debugLength = 50
+debug = False
+debugLength = 20
 
 origin_dictionary = {
     "Traffic_convenience": "交通便捷，交通便利，交通，方便，周边，开车",
@@ -77,53 +77,32 @@ def judgeTopicBySimilarity(entity):
     return topic
 
 
-def matching_line(entity, opinion):
+def matching_line(current_attribute, entity):
     # print(entity, ":", opinion)
-    # 开始判断属性
-    attribute_result = "Traffic_convenience" if entity in dictionary.get("Traffic_convenience") \
-        else "Distance_from_business_district" if entity in dictionary.get("Distance_from_business_district") \
-        else "Easy_to_find" if entity in dictionary.get("Easy_to_find") else "Wait_time" if entity in dictionary.get("Wait_time") \
-        else "Waiters_attitude" if entity in dictionary.get("Waiters_attitude") \
-        else "Parking_convenience" if entity in dictionary.get("Parking_convenience") \
-        else "Serving_speed" if entity in dictionary.get("Serving_speed") else "Price_level" if entity in dictionary.get("Price_level") \
-        else "Cost_effective" if entity in dictionary.get("Cost_effective") else "Discount" if entity in dictionary.get("Discount") \
-        else "Decoration" if entity in dictionary.get("Decoration") else "Noise" if entity in dictionary.get("Noise") \
-        else "Repast_space" if entity in dictionary.get("Repast_space") \
-        else "Environment_cleanliness" if entity in dictionary.get("Environment_cleanliness") \
-        else "Dish_portion" if entity in dictionary.get("Dish_portion") else "Dish_taste" if entity in dictionary.get("Dish_taste") \
-        else "Dish_taste" if entity in dictionary.get("Dish_taste") else "Dish_look" if entity in dictionary.get("Dish_look") else "EMPTY"
+    if entity in dictionary.get(current_attribute):
+        return True
+
+    attribute_result = judgeTopicBySimilarity(entity)
 
     if attribute_result == "EMPTY":
-        attribute_result = judgeTopicBySimilarity(entity)
+        print("未匹配到属性：", entity)
 
-    if attribute_result == "EMPTY":
-        print("最终仍未匹配到属性：", entity, opinion)
-        return
-    Entity_list[attribute_result].append(entity)
-    Opinion_list[attribute_result].append(opinion)
+    return attribute_result == current_attribute
 
 
-def matching(data_list):
-    # 依次处理每行
-    for line in data_list:
-        # print("正在匹配:", line)
-        pairs = line.split(",")
-        # print("pairs:", pairs)
-        for current_pair in pairs:
-            # print("正在查找属性:", current_pair)
-            temp = current_pair.split(" ")
-            if len(temp) < 2:
-                # if len(temp) == 1:
-                #     print("没有观点词：", temp)
-                continue
-            matching_line(temp[0], temp[1])
+# 查找属于当前属性的观点，返回字符串，例如“味道 不错, 味道 好吃”
+def searching_opinions(current_attribute, line):
+    result = []
+    pairs = line.split(",")
+    for current_pair in pairs:
+        # print("正在查找属性:", current_pair)
+        temp = current_pair.split(" ")
+        if len(temp) < 2:
+            continue
+        if matching_line(current_attribute, temp[0]):
+            result.append(current_pair)
 
-    print("》》》结果检验：")
-    for key, value in Entity_list.items():
-        length_entity = len(value)
-        length_opinion = len(Opinion_list.get(key))
-        if length_entity != length_opinion:
-            print("检验不通过，实体列表和观点列表长度不一致！！！")
+    return ",".join(result)
 
 
 if __name__ == "__main__":
@@ -136,23 +115,14 @@ if __name__ == "__main__":
     print(data_global.head())
     print("data_global's length = ", len(data_global))
 
-    # 2. 依次处理每行，判断其中观点所属的属性→将每个属性下的观点对保存为列表→新建一个DF保存五列的结果
-    matching(data_global["Opinion"])
+    # 2. 遍历17个属性，依次处理每行，查找属于当前属性的观点
+    attributes = origin_dictionary.keys()
+    for attribute in attributes:
+        print("正在处理属性：", attribute)
+        data_global[attribute] = data_global.apply(lambda row_global: searching_opinions(attribute, row_global["Opinion"]), axis=1)
 
-    # print("Entity_list:", Entity_list)
-    # print("Opinion_list:", Opinion_list)
-
-    # 3. 保存到文件
-    for k, v in Entity_list.items():
-        df = pd.DataFrame()
-        # print("k:", k)
-        # print("v:", v)
-        df[str(k + "_entity")] = pd.Series(v)
-        df[str(k + "_opinion")] = pd.Series(Opinion_list.get(k))
-        s_path = "test/17-Entity_opinion_" + k + "-test.xlsx" if debug else "result/17-Entity_opinion_" + k + ".xlsx"
-        df.to_excel(s_path, index=False)
-
-    # print(df.head())
+    s_path = "test/Entity_opinion-test.xlsx" if debug else "result/Entity_opinion.xlsx"
+    data_global.to_excel(s_path, index=False)
 
     end_time = time.time()
     print("End time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time)))

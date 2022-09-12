@@ -1,7 +1,6 @@
 import time, codecs, csv, math, numpy as np, random, datetime, os, gc, pandas as pd, jieba, re, sys
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import CountVectorizer
-import paddlehub as hub
 import xiangshi as xs
 
 debug = False

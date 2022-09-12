@@ -45,12 +45,16 @@ def judgeTopicBySimilarity(entity):
     return topic
 
 
+def join_test():
+    list_a = ["a", "bbb", "cd", "feg"]
+    print(",".join(list_a))
+
+
 if __name__ == "__main__":
     start_time = time.time()
     print("Start time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time)))
 
-    term = "菜"
-    print(judgeTopicBySimilarity(term))
+    join_test()
 
     end_time = time.time()
     print("End time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time)))
