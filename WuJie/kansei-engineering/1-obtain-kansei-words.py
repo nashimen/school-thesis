@@ -1,5 +1,4 @@
 import time, codecs, csv, math, numpy as np, random, datetime, os, gc, pandas as pd, jieba, re, sys
-import paddlehub as hub
 import jieba.posseg as pseg
 # from pylab import *
 

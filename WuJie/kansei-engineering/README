@@ -11,3 +11,6 @@
 
 4-clustering.py
 在线评论分词→Bert词向量表示→聚类
+
+5-word-co-occurrence.py
+通过遍历，统计词汇与某个主题的共现频率

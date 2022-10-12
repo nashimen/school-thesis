@@ -1,0 +1,11 @@
+这个项目是分析评论规则变化对于消费者情感的影响
+文本挖掘部分
+
+1-sentiment-readability-calculation.py
+计算属性情感
+
+2-readability-calculation.py
+计算评论可读性
+
+3-picture-calculation.py
+计算图片数量

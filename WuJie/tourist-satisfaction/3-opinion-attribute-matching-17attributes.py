@@ -6,7 +6,7 @@ warnings.filterwarnings("ignore", category=Warning)
 
 pd.set_option('display.max_columns', None)
 
-debug = False
+debug = True
 debugLength = 20
 
 origin_dictionary = {
@@ -116,13 +116,16 @@ if __name__ == "__main__":
     print("data_global's length = ", len(data_global))
 
     # 2. 遍历17个属性，依次处理每行，查找属于当前属性的观点
-    attributes = origin_dictionary.keys()
+    # attributes = origin_dictionary.keys()
+    # print("1:", attributes)
+    attributes = [*origin_dictionary]
+    attributes.reverse()
+    print(attributes)
     for attribute in attributes:
         print("正在处理属性：", attribute)
         data_global[attribute] = data_global.apply(lambda row_global: searching_opinions(attribute, row_global["Opinion"]), axis=1)
-
-    s_path = "test/Entity_opinion-test.xlsx" if debug else "result/Entity_opinion.xlsx"
-    data_global.to_excel(s_path, index=False)
+        s_path = "test/Entity_opinion-reverse-test.xlsx" if debug else "result/Entity_opinion-reverse.xlsx"
+        data_global.to_excel(s_path, index=False)
 
     end_time = time.time()
     print("End time : ",  time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time)))
