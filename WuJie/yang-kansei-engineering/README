@@ -1,0 +1,11 @@
+Yang产品创新研究（Kansei+Kano+机会景观图）
+主要任务包括：Kansei words提取、Kansei words情感计算、属性Kansei表现计算
+
+1-obtain-kansei-words.py
+获取Candidate Kansei words（只提取了形容词，如果加上副词会很多）
+
+2-calculation-word-similarity.py
+基于SentenceTransformer对Kansei words和Seed words进行向量化表示，然后计算相似度，进而得到Kansei words的情感分数
+
+3-ap-calculation.py
+基于Kansei words的情感分数，分别计算8个属性的Kansei表现

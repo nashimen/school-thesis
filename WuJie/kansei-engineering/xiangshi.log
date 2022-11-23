@@ -1,0 +1,9 @@
+10/13/22, 13:33:22 - DEBUG http://paddlepaddle.org.cn:80 "GET /paddlehub/search?word=senta_cnn&hub_version=2.3.0&paddle_version=2.3.2&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222022-10-13+13%3A33%3A21%22%2C+%22hub_name%22%3A+%22b494a82e560c16503c4fad24768c666d-1640746018%22%7D HTTP/1.1" 301 186
+10/13/22, 13:33:22 - DEBUG Starting new HTTPS connection (1): paddlepaddle.org.cn:443
+10/13/22, 13:33:24 - DEBUG https://paddlepaddle.org.cn:443 "GET /paddlehub/search?word=senta_cnn&hub_version=2.3.0&paddle_version=2.3.2&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222022-10-13+13%3A33%3A21%22%2C+%22hub_name%22%3A+%22b494a82e560c16503c4fad24768c666d-1640746018%22%7D HTTP/1.1" 301 169
+10/13/22, 13:33:24 - DEBUG Starting new HTTPS connection (1): www.paddlepaddle.org.cn:443
+10/13/22, 14:02:08 - DEBUG http://paddlepaddle.org.cn:80 "GET /paddlehub/search?word=senta_cnn&hub_version=2.3.0&paddle_version=2.3.2&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222022-10-13+14%3A02%3A07%22%2C+%22hub_name%22%3A+%22b494a82e560c16503c4fad24768c666d-1640746018%22%7D HTTP/1.1" 301 186
+10/13/22, 14:02:08 - DEBUG Starting new HTTPS connection (1): paddlepaddle.org.cn:443
+10/13/22, 14:02:09 - DEBUG https://paddlepaddle.org.cn:443 "GET /paddlehub/search?word=senta_cnn&hub_version=2.3.0&paddle_version=2.3.2&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222022-10-13+14%3A02%3A07%22%2C+%22hub_name%22%3A+%22b494a82e560c16503c4fad24768c666d-1640746018%22%7D HTTP/1.1" 301 169
+10/13/22, 14:02:09 - DEBUG Starting new HTTPS connection (1): www.paddlepaddle.org.cn:443
+10/13/22, 14:02:11 - DEBUG https://www.paddlepaddle.org.cn:443 "GET /paddlehub/search?word=senta_cnn&hub_version=2.3.0&paddle_version=2.3.2&extra=%7B%22command%22%3A+%22update_cache%22%2C+%22mtime%22%3A+%222022-10-13+14%3A02%3A07%22%2C+%22hub_name%22%3A+%22b494a82e560c16503c4fad24768c666d-1640746018%22%7D HTTP/1.1" 200 9714

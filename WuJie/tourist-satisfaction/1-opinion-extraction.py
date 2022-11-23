@@ -1,10 +1,8 @@
-import time, codecs, csv, math, numpy as np, random, datetime, os, gc, jieba, re, sys
+import time, codecs, csv, math, numpy as np, random, datetime, os, gc, jieba, re, sys, pandas as pd
 import paddlehub as hub
 from paddlenlp import Taskflow
 import jieba.posseg as pseg
 # from pylab import *
-
-sys.setrecrsionlimit(10)
 
 import warnings
 warnings.filterwarnings("ignore", category=Warning)

@@ -59,7 +59,7 @@ if __name__ == "__main__":
     file.close()
     print("candidates:", candidates)
 
-    # Bert词向量表示
+    # Transformer词向量表示
     embeddings_seed_words = load_w2v(seed_words)
     embeddings_candidates = load_w2v(candidates)
 

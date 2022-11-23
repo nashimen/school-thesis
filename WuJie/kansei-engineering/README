@@ -13,4 +13,20 @@
 在线评论分词→Bert词向量表示→聚类
 
 5-word-co-occurrence.py
-通过遍历，统计词汇与某个主题的共现频率
+通过遍历，统计属性词汇与某个主题的共现频率。这个代码是使用志伟跑的属性级情感的结果。
+已废弃
+
+6-word-co-occurence.py
+通过遍历，统计Kansei词汇与某个主题的贡献频率
+
+7-ap-calculation.py
+Kansei情感计算，使用情感词典
+
+8-attribute-match.py
+sentence与属性进行匹配，属性词典+词向量相似度，词向量是志伟训练的word2vec模型
+
+9-word-co-occurrence.py
+遍历统计属性词汇的出现频率
+
+10-attribute-kansei-co-occurrence.py
+统计Top属性词和Kansei words的共现频率

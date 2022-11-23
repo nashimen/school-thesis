@@ -7,7 +7,7 @@ warnings.filterwarnings("ignore", category=Warning)
 
 pd.set_option('display.max_columns', None)
 
-debug = True
+debug = False
 debugLength = 150
 
 
@@ -17,7 +17,8 @@ def count_frequency(current_word, sentence_set):
     for current_sentence in sentence_set:
         if current_word in current_sentence:
             counter += 1
-
+    if counter > 10:
+        print(current_word, counter)
     return counter
 
 
@@ -43,13 +44,13 @@ if __name__ == "__main__":
     sentences = pd.read_excel(sentences_path, engine="openpyxl", nrows=debugLength if debug else None)
     current_attribute_sentences = sentences.loc[sentences["Attribute"] == current_attribute]["sentence"]
     # print(current_attribute_sentences)
-    for sentence in current_attribute_sentences:
-        print("sentence:", sentence)
+    # for sentence in current_attribute_sentences:
+    #     print("sentence:", sentence)
 
     # 依次判断每个词汇出现频率
     counters = []  # 保存所有词汇的出现次数
     for word in words:
-        counters.append(count_frequency(word, sentences))
+        counters.append(count_frequency(word, current_attribute_sentences))
         if debug:
             print("word:", word)
 
